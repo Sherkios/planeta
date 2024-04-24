@@ -1,0 +1,18 @@
+@import "reset";
+:root {
+  --primary-color: rgba(53, 53, 53, 1);
+  --second-color: rgba(37, 27, 91, 1);
+  --white: rgba(255, 255, 255, 1);
+  --hover-color: rgba(237, 139, 0, 1);
+  --ui-color: rgba(113, 52, 127, 1);
+}
+
+.wrapper {
+  max-width: 1496px;
+  padding: 0 40px;
+  margin: 0 auto;
+}
+
+* {
+  box-sizing: border-box;
+}
