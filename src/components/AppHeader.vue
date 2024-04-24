@@ -3,7 +3,11 @@
     <div class="header__wrapper wrapper">
       <div class="header__top">
         <div class="header__location">
-          <img src="@/assets/location.svg" alt class="header__location-img" />
+          <img
+            src="@/assets/img/location.svg"
+            alt
+            class="header__location-img"
+          />
           <div class="header__city">Уфа</div>
         </div>
         <div class="header__top-right">
@@ -12,10 +16,14 @@
         </div>
       </div>
       <div class="header__middle">
-        <img src="@/assets/logo.png" alt class="header__logo" />
+        <img src="@/assets/img/logo.png" alt class="header__logo" />
         <div class="header__middle-flex">
           <app-search class="header__serach-block"></app-search>
-          <interect-items></interect-items>
+          <div class="header__interects">
+            <interect-item img-src="like.svg" :count="2"></interect-item>
+            <interect-item img-src="profile.svg"></interect-item>
+            <interect-item img-src="basket.svg" :count="2"></interect-item>
+          </div>
         </div>
       </div>
       <header-nav class="header__nav"></header-nav>
@@ -26,7 +34,7 @@
 <script>
 import HeaderNav from "@/components/HeaderNav.vue";
 import TopNav from "@/components/TopNav.vue";
-import InterectItems from "@/components/InterectItems.vue";
+import InterectItem from "@/components/InterectItem.vue";
 import AppSearch from "@/components/UI/AppSearch.vue";
 
 export default {
@@ -34,7 +42,7 @@ export default {
   components: {
     HeaderNav,
     TopNav,
-    InterectItems,
+    InterectItem,
     AppSearch,
   },
   data() {
@@ -104,6 +112,8 @@ export default {
   }
 
   &__interects {
+    display: flex;
+    gap: 24px;
   }
 
   &__nav {

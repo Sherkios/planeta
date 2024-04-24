@@ -2,7 +2,7 @@
   <form class="serach">
     <input class="serach__input" placeholder="Поиск по каталогу" />
     <button class="serach__button" type="submit">
-      <img src="@/assets/search.svg" alt="Поиск" class="serach__img" />
+      <img src="@/assets/img/search.svg" alt="Поиск" class="serach__img" />
     </button>
   </form>
 </template>

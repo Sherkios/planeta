@@ -5,130 +5,10 @@
       <div class="header-nav__content-wrapper">
         <div class="header-nav__content">
           <div class="header-nav__links">
-            <a href="#" class="header-nav__link">
-              <div class="header-nav__link-name">
-                Художественная литература
-                <div class="header-nav__link-count">573</div>
-              </div>
-            </a>
-            <a href="#" class="header-nav__link">
-              <div class="header-nav__link-name">
-                Детская литература
-                <div class="header-nav__link-count">3</div>
-              </div>
-            </a>
-            <a href="#" class="header-nav__link">
-              <div class="header-nav__link-name">
-                Комиксы. Манга
-                <div class="header-nav__link-count">123</div>
-              </div>
-            </a>
-            <a href="#" class="header-nav__link">
-              <div class="header-nav__link-name">
-                Психология
-                <div class="header-nav__link-count">98</div>
-              </div>
-            </a>
-            <a href="#" class="header-nav__link">
-              <div class="header-nav__link-name">
-                Эзотерика
-                <div class="header-nav__link-count">53</div>
-              </div>
-            </a>
-            <a href="#" class="header-nav__link">
-              <div class="header-nav__link-name">
-                Философия
-                <div class="header-nav__link-count">38</div>
-              </div>
-            </a>
-            <a href="#" class="header-nav__link">
-              <div class="header-nav__link-name">
-                Деловая литература
-                <div class="header-nav__link-count">42</div>
-              </div>
-            </a>
-            <a href="#" class="header-nav__link">
-              <div class="header-nav__link-name">
-                Юридическая литература
-
-                <div class="header-nav__link-count">65</div>
-              </div>
-            </a>
-            <a href="#" class="header-nav__link">
-              <div class="header-nav__link-name">
-                Здоровье. Спорт. Красота
-
-                <div class="header-nav__link-count">89</div>
-              </div>
-            </a>
-            <a href="#" class="header-nav__link">
-              <div class="header-nav__link-name">
-                Мать и дитя
-
-                <div class="header-nav__link-count">51</div>
-              </div>
-            </a>
-            <a href="#" class="header-nav__link">
-              <div class="header-nav__link-name">
-                Наука и техника
-
-                <div class="header-nav__link-count">90</div>
-              </div>
-            </a>
-            <a href="#" class="header-nav__link">
-              <div class="header-nav__link-name">
-                Культура. Искуссвто. История
-                <div class="header-nav__link-count">34</div>
-              </div>
-            </a>
-            <a href="#" class="header-nav__link">
-              <div class="header-nav__link-name">
-                Кулинария
-
-                <div class="header-nav__link-count">17</div>
-              </div>
-            </a>
-            <a href="#" class="header-nav__link">
-              <div class="header-nav__link-name">
-                Хобби
-
-                <div class="header-nav__link-count">1</div>
-              </div>
-            </a>
-            <a href="#" class="header-nav__link">
-              <div class="header-nav__link-name">
-                Религия
-
-                <div class="header-nav__link-count">87</div>
-              </div>
-            </a>
-            <a href="#" class="header-nav__link">
-              <div class="header-nav__link-name">
-                Национальная литература
-
-                <div class="header-nav__link-count">58</div>
-              </div>
-            </a>
-            <a href="#" class="header-nav__link">
-              <div class="header-nav__link-name">
-                Книги на иностранных языках
-                <div class="header-nav__link-count">123</div>
-              </div>
-            </a>
-            <a href="#" class="header-nav__link">
-              <div class="header-nav__link-name">
-                Подарочные издания
-
-                <div class="header-nav__link-count">45</div>
-              </div>
-            </a>
-            <a href="#" class="header-nav__link">
-              <div class="header-nav__link-name">
-                Разное
-
-                <div class="header-nav__link-count">17</div>
-              </div>
-            </a>
+            <header-nav-link v-for="link in navMenu" :key="link.id">
+              <template #default>{{ link.name }}</template>
+              <template #count>{{ link.count }}</template>
+            </header-nav-link>
           </div>
           <div class="header-nav__bestseller">
             <div class="header-nav__bestseller-name">Бестселлеры</div>
@@ -141,9 +21,30 @@
 </template>
 
 <script>
+import HeaderNavLink from "@/components/HeaderNavLink.vue";
+import { mapActions, mapGetters, mapMutations } from "vuex";
+
 export default {
-  setup() {
+  components: {
+    HeaderNavLink,
+  },
+  data() {
     return {};
+  },
+  methods: {
+    ...mapMutations({}),
+    ...mapActions({
+      fetchPosts: "navMenu/fetchPosts",
+    }),
+  },
+  computed: {
+    ...mapGetters({
+      navMenu: "navMenu/navMenu",
+    }),
+  },
+
+  async mounted() {
+    await this.fetchPosts();
   },
 };
 </script>
@@ -193,8 +94,8 @@ export default {
     border: 1px solid rgba(227, 227, 227, 1);
     border-radius: 12px;
 
-    // visibility: hidden;
-    // opacity: 0;
+    visibility: hidden;
+    opacity: 0;
 
     transition: all 0.5s ease;
   }
@@ -204,45 +105,45 @@ export default {
     gap: 0 48px;
   }
 
-  &__link {
-    position: relative;
-    display: flex;
-    gap: 5px;
-    flex: 1 1 248px;
+  // &__link {
+  //   position: relative;
+  //   display: flex;
+  //   gap: 5px;
+  //   flex: 1 1 248px;
 
-    &:nth-child(2n - 1) {
-      margin-right: 48px;
-    }
-  }
+  //   &:nth-child(2n - 1) {
+  //     margin-right: 48px;
+  //   }
+  // }
 
-  &__link-name {
-    --link-color: var(--primary-color);
-    position: relative;
-    width: max-content;
-    padding-right: 5px;
+  // &__link-name {
+  //   --link-color: var(--primary-color);
+  //   position: relative;
+  //   width: max-content;
+  //   padding-right: 5px;
 
-    color: var(--link-color);
+  //   color: var(--link-color);
 
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 40px;
+  //   font-size: 16px;
+  //   font-weight: 500;
+  //   line-height: 40px;
 
-    transition: all 0.2s ease;
+  //   transition: all 0.2s ease;
 
-    &:hover {
-      --link-color: var(--second-color);
-    }
-  }
+  //   &:hover {
+  //     --link-color: var(--second-color);
+  //   }
+  // }
 
-  &__link-count {
-    position: absolute;
-    right: 0;
-    top: 0;
-    transform: translate(100%, -8px);
-    font-size: 16px;
+  // &__link-count {
+  //   position: absolute;
+  //   right: 0;
+  //   top: 0;
+  //   transform: translate(100%, -8px);
+  //   font-size: 16px;
 
-    color: var(--blue-color);
-  }
+  //   color: var(--blue-color);
+  // }
 
   &__bestseller {
     // width: 444px;

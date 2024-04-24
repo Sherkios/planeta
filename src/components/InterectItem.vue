@@ -1,23 +1,23 @@
 <template>
-  <div class="interect-items">
-    <div class="interect-item">
-      <img src="@/assets/like.svg" alt class="interect-item__img" />
-      <div class="interect-item__count">12</div>
-    </div>
-    <div class="interect-item">
-      <img src="@/assets/profile.svg" alt class="interect-item__img" />
-      <div class="interect-item__count">1</div>
-    </div>
-    <div class="interect-item">
-      <img src="@/assets/basket.svg" alt class="interect-item__img" />
-      <div class="interect-item__count">5</div>
-    </div>
-  </div>
+  <a href="#" class="interect-item">
+    <img :src="`img/${imgSrc}`" alt class="interect-item__img" />
+    <div class="interect-item__count" v-show="count !== 0">{{ count }}</div>
+  </a>
 </template>
 
 <script>
 export default {
-  name: "interect-items",
+  name: "interect-item",
+  props: {
+    imgSrc: {
+      type: String,
+      required: true,
+    },
+    count: {
+      type: Number,
+      default: 0,
+    },
+  },
 };
 </script>
 
