@@ -5,5 +5,10 @@ export default createStore({
   getters: {},
   mutations: {},
   actions: {},
-  modules: {},
+  modules: {
+    auth: Auth,
+    users: Users,
+    notes: Notes,
+    errors: Errors,
+  },
 });
