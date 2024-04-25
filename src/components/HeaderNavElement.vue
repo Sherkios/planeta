@@ -1,7 +1,7 @@
 <template>
   <nav class="header-nav">
     <div class="header-nav__category">
-      <div class="header-nav__category-name">Книги</div>
+      <div class="header-nav__category-name"><slot></slot></div>
       <div class="header-nav__content-wrapper">
         <div class="header-nav__content">
           <div class="header-nav__links">
@@ -10,9 +10,22 @@
               <template #count>{{ link.count }}</template>
             </header-nav-link>
           </div>
-          <div class="header-nav__bestseller">
+          <div class="header-nav__bestseller" v-if="limitBestseller">
             <div class="header-nav__bestseller-name">Бестселлеры</div>
-            <div class="header-nav__bestseller-group"></div>
+            <div class="header-nav__bestseller-group">
+              <book-item
+                v-for="card of limitBestseller"
+                :key="card.id"
+                :imgSrc="card.imgSrc"
+                :raiting="card.raiting"
+                :reviews="card.reviews"
+                :small="true"
+                ><template #price>{{ card.price }}</template>
+                <template #oldPrice>{{ card.oldPrice }}</template>
+                <template #name>{{ card.name }}</template>
+                <template #discount>{{ card.discount }}</template></book-item
+              >
+            </div>
           </div>
         </div>
       </div>
@@ -22,29 +35,26 @@
 
 <script>
 import HeaderNavLink from "@/components/HeaderNavLink.vue";
-import { mapActions, mapGetters, mapMutations } from "vuex";
+// import { mapActions, mapGetters, mapMutations } from "vuex";
+import BookItem from "@/components/BookItem.vue";
 
 export default {
+  name: "header-nav-element",
+  props: {
+    navMenu: {
+      type: Object,
+      required: true,
+    },
+    limitBestseller: {
+      type: Object,
+    },
+  },
   components: {
     HeaderNavLink,
+    BookItem,
   },
   data() {
     return {};
-  },
-  methods: {
-    ...mapMutations({}),
-    ...mapActions({
-      fetchPosts: "navMenu/fetchPosts",
-    }),
-  },
-  computed: {
-    ...mapGetters({
-      navMenu: "navMenu/navMenu",
-    }),
-  },
-
-  async mounted() {
-    await this.fetchPosts();
   },
 };
 </script>
@@ -55,7 +65,7 @@ export default {
   gap: 23.5px;
   &__category {
     --category-color: var(--second-color);
-    position: relative;
+    // position: relative;
     padding: 6px 0;
     color: var(--category-color);
 
@@ -82,6 +92,7 @@ export default {
   }
   &__content {
     position: absolute;
+    left: 0;
     top: 100%;
     max-width: 1112px;
     width: 1112px;
@@ -92,6 +103,7 @@ export default {
     gap: 64px;
 
     border: 1px solid rgba(227, 227, 227, 1);
+    background-color: var(--white);
     border-radius: 12px;
 
     visibility: hidden;
@@ -105,49 +117,12 @@ export default {
     gap: 0 48px;
   }
 
-  // &__link {
-  //   position: relative;
-  //   display: flex;
-  //   gap: 5px;
-  //   flex: 1 1 248px;
-
-  //   &:nth-child(2n - 1) {
-  //     margin-right: 48px;
-  //   }
-  // }
-
-  // &__link-name {
-  //   --link-color: var(--primary-color);
-  //   position: relative;
-  //   width: max-content;
-  //   padding-right: 5px;
-
-  //   color: var(--link-color);
-
-  //   font-size: 16px;
-  //   font-weight: 500;
-  //   line-height: 40px;
-
-  //   transition: all 0.2s ease;
-
-  //   &:hover {
-  //     --link-color: var(--second-color);
-  //   }
-  // }
-
-  // &__link-count {
-  //   position: absolute;
-  //   right: 0;
-  //   top: 0;
-  //   transform: translate(100%, -8px);
-  //   font-size: 16px;
-
-  //   color: var(--blue-color);
-  // }
-
   &__bestseller {
     // width: 444px;
     flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
   }
 
   &__bestseller-name {
@@ -155,6 +130,11 @@ export default {
     font-size: 20px;
     font-weight: 700;
     line-height: 1.4em;
+  }
+
+  &__bestseller-group {
+    display: flex;
+    gap: 12px;
   }
 }
 </style>

@@ -1,0 +1,37 @@
+.slide-button {
+  --w: 40px;
+  position: absolute;
+  z-index: 5;
+
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: var(--w);
+  height: var(--w);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background-color: var(--white);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+
+  &_next {
+    right: 0;
+    transform: translate(50%, -50%);
+    & img {
+      transform: translate(10%, 0);
+    }
+  }
+  &_prev {
+    transform: translate(-50%, -50%) rotateY(180deg);
+    left: 0;
+
+    & img {
+      transform: translate(10%, 0);
+    }
+  }
+}

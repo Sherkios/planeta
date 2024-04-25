@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
 import NavMenu from "@/store/NavMenu";
+import Cards from "@/store/cards";
 export default createStore({
   state: {},
   getters: {},
@@ -7,5 +8,6 @@ export default createStore({
   actions: {},
   modules: {
     navMenu: NavMenu,
+    cards: Cards,
   },
 });

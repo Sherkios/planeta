@@ -45,6 +45,7 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
 
     padding: 0 4px;
     border-radius: 100px;

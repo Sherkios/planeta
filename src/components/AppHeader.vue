@@ -26,21 +26,45 @@
           </div>
         </div>
       </div>
-      <header-nav class="header__nav"></header-nav>
+      <div class="header__nav">
+        <header-nav-element
+          class="header__nav-element"
+          :nav-menu="navMenu"
+          :limit-bestseller="limitBestseller"
+        >
+          Книги
+        </header-nav-element>
+        <header-nav-element class="header__nav-element" :nav-menu="navMenu">
+          Школа
+        </header-nav-element>
+        <header-nav-element class="header__nav-element" :nav-menu="navMenu">
+          Канцтовары
+        </header-nav-element>
+        <header-nav-element class="header__nav-element" :nav-menu="navMenu">
+          Хобби
+        </header-nav-element>
+        <header-nav-element class="header__nav-element" :nav-menu="navMenu">
+          Игры
+        </header-nav-element>
+        <header-nav-element class="header__nav-element" :nav-menu="navMenu">
+          Игрушки
+        </header-nav-element>
+      </div>
     </div>
   </header>
 </template>
 
 <script>
-import HeaderNav from "@/components/HeaderNav.vue";
+import HeaderNavElement from "@/components/HeaderNavElement.vue";
 import TopNav from "@/components/TopNav.vue";
 import InterectItem from "@/components/InterectItem.vue";
 import AppSearch from "@/components/UI/AppSearch.vue";
+import { mapActions, mapGetters, mapMutations } from "vuex";
 
 export default {
   name: "app-header",
   components: {
-    HeaderNav,
+    HeaderNavElement,
     TopNav,
     InterectItem,
     AppSearch,
@@ -48,11 +72,40 @@ export default {
   data() {
     return {};
   },
+  methods: {
+    ...mapMutations({}),
+    ...mapActions({
+      fetchLinks: "navMenu/fetchLinks",
+      fetchCards: "cards/fetchCards",
+    }),
+  },
+  computed: {
+    ...mapGetters({
+      navMenu: "navMenu/navMenu",
+      bestseller: "cards/cards",
+    }),
+    limitBestseller() {
+      if (this.bestseller.length > 3) {
+        return this.bestseller.slice(0, 3);
+      } else {
+        return this.bestseller;
+      }
+    },
+  },
+
+  async mounted() {
+    await this.fetchLinks();
+    await this.fetchCards();
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--white);
   &__wrapper {
   }
 
@@ -117,6 +170,9 @@ export default {
   }
 
   &__nav {
+    position: relative;
+    display: flex;
+    gap: 22px;
   }
 }
 .wrapper {

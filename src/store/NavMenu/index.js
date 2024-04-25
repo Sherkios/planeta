@@ -15,7 +15,7 @@ export default {
     },
   },
   actions: {
-    async fetchPosts({ commit }) {
+    async fetchLinks({ commit }) {
       try {
         commit("setNavMenu", navMenuData);
       } catch (error) {
