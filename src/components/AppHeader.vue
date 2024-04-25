@@ -105,6 +105,7 @@ export default {
   position: sticky;
   top: 0;
   z-index: 10;
+  padding-top: 24px;
   background-color: var(--white);
   &__wrapper {
   }
@@ -137,6 +138,7 @@ export default {
   }
 
   &__phone {
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
     font-weight: 700;
     line-height: 1.4em;

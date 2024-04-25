@@ -11,18 +11,27 @@
     >
       <swiper-slide class="swiper-slide">
         <app-banner background-img="banner_1.png" class="banner">
-          <template #default>Мы изменились к лучшему </template>
+          <template #default
+            >Мы изменились <br />
+            к лучшему
+          </template>
           <template #text>
-            Компания «Планета» провела ребрендинг. Мы изменили наш стиль и
-            улучшили сайт.
+            Компания «Планета» провела <br />
+            ребрендинг. Мы изменили наш <br />
+            стиль и улучшили сайт.
           </template>
         </app-banner>
       </swiper-slide>
       <swiper-slide class="swiper-slide">
         <app-banner class="banner__red banner">
-          <template #default>Скидка 20% на книги о любви!</template>
+          <template #default
+            >Скидка 20% <br />
+            на книги о любви!</template
+          >
           <template #text>
-            Скидка действует на книги российских авторов в мягкой обложке.
+            Скидка действует на книги <br />
+            российских авторов в мягкой <br />
+            обложке.
           </template>
         </app-banner>
       </swiper-slide>

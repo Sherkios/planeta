@@ -2,30 +2,28 @@
   <nav class="header-nav">
     <div class="header-nav__category">
       <div class="header-nav__category-name"><slot></slot></div>
-      <div class="header-nav__content-wrapper">
-        <div class="header-nav__content">
-          <div class="header-nav__links">
-            <header-nav-link v-for="link in navMenu" :key="link.id">
-              <template #default>{{ link.name }}</template>
-              <template #count>{{ link.count }}</template>
-            </header-nav-link>
-          </div>
-          <div class="header-nav__bestseller" v-if="limitBestseller">
-            <div class="header-nav__bestseller-name">Бестселлеры</div>
-            <div class="header-nav__bestseller-group">
-              <book-item
-                v-for="card of limitBestseller"
-                :key="card.id"
-                :imgSrc="card.imgSrc"
-                :raiting="card.raiting"
-                :reviews="card.reviews"
-                :small="true"
-                ><template #price>{{ card.price }}</template>
-                <template #oldPrice>{{ card.oldPrice }}</template>
-                <template #name>{{ card.name }}</template>
-                <template #discount>{{ card.discount }}</template></book-item
-              >
-            </div>
+      <div class="header-nav__content">
+        <div class="header-nav__links">
+          <header-nav-link v-for="link in navMenu" :key="link.id">
+            <template #default>{{ link.name }}</template>
+            <template #count>{{ link.count }}</template>
+          </header-nav-link>
+        </div>
+        <div class="header-nav__bestseller" v-if="limitBestseller">
+          <div class="header-nav__bestseller-name">Бестселлеры</div>
+          <div class="header-nav__bestseller-group">
+            <book-item
+              v-for="card of limitBestseller"
+              :key="card.id"
+              :imgSrc="card.imgSrc"
+              :raiting="card.raiting"
+              :reviews="card.reviews"
+              :small="true"
+              ><template #price>{{ card.price }}</template>
+              <template #oldPrice>{{ card.oldPrice }}</template>
+              <template #name>{{ card.name }}</template>
+              <template #discount>{{ card.discount }}</template></book-item
+            >
           </div>
         </div>
       </div>
@@ -65,7 +63,6 @@ export default {
   gap: 23.5px;
   &__category {
     --category-color: var(--second-color);
-    // position: relative;
     padding: 6px 0;
     color: var(--category-color);
 
@@ -74,6 +71,7 @@ export default {
     line-height: 1.4em;
 
     transition: all 0.2s ease;
+    border-radius: 6px 6px 0 0;
 
     &:hover {
       --category-color: var(--hover-color);

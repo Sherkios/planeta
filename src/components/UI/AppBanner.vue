@@ -25,7 +25,6 @@
       >
         <path
           d="M1 8L19 8M19 8L12.8125 2M19 8L12.8125 14"
-          stroke="white"
           stroke-width="2"
           stroke-linecap="square"
         />
@@ -66,6 +65,8 @@ export default {
 
 <style lang="scss" scoped>
 .banner {
+  --color: var(--white);
+  --link-color: var(--color);
   position: relative;
   max-width: 1056px;
   width: 100%;
@@ -76,6 +77,10 @@ export default {
   display: flex;
   align-items: center;
   padding: 48px;
+  &_dark {
+    --color: var(--primary-color);
+    --link-color: var(--second-color);
+  }
   &_second {
     align-items: flex-start;
     justify-content: space-between;
@@ -88,13 +93,13 @@ export default {
   }
 
   &__info {
-    max-width: 327px;
+    // max-width: 327px;
     position: relative;
     z-index: 2;
     display: flex;
     flex-direction: column;
     gap: 12px;
-    color: var(--white);
+    color: var(--color);
   }
 
   &__title {
@@ -116,7 +121,6 @@ export default {
   }
 
   &__link {
-    --link-color: var(--white);
     --w: 40px;
     position: relative;
     z-index: 2;

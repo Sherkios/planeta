@@ -20,8 +20,8 @@
 }
 
 .wrapper {
-  max-width: 1496px;
-  padding: 0 40px;
+  max-width: 1416px;
+  // padding: 0 40px;
   margin: 0 auto;
 }
 
@@ -30,6 +30,8 @@
 }
 
 a {
+  font-size: inherit;
   color: inherit;
+  line-height: inherit;
   text-decoration: none;
 }

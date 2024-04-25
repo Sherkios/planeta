@@ -273,7 +273,6 @@ export default {
     z-index: 0;
     top: 50%;
     left: 50%;
-    width: 153.85px;
     height: 240px;
     transform: translate(-50%, -50%);
   }
