@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-    <div class="header__wrapper wrapper">
+    <div class="wrapper">
       <div class="header__top">
         <div class="header__location">
           <img
@@ -15,6 +15,8 @@
           <a href="tel:+78005000-338" class="header__phone">8 (800) 5000-338</a>
         </div>
       </div>
+    </div>
+    <div class="wrapper">
       <div class="header__middle">
         <img src="@/assets/img/logo.png" alt class="header__logo" />
         <div class="header__middle-flex">
@@ -25,30 +27,39 @@
             <interect-item img-src="basket.svg" :count="2"></interect-item>
           </div>
         </div>
+        <div class="header__burger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
+    </div>
+    <div class="header__wrapper wrapper">
       <div class="header__nav">
         <header-nav-element
           class="header__nav-element"
           :nav-menu="navMenu"
           :limit-bestseller="limitBestseller"
+          @toggleCategory="toggleCategory"
+          v-for="category in categoryArr"
+          :key="category.id"
+          :category="category"
         >
-          Книги
+          {{ category.title }}
         </header-nav-element>
-        <header-nav-element class="header__nav-element" :nav-menu="navMenu">
-          Школа
-        </header-nav-element>
-        <header-nav-element class="header__nav-element" :nav-menu="navMenu">
-          Канцтовары
-        </header-nav-element>
-        <header-nav-element class="header__nav-element" :nav-menu="navMenu">
-          Хобби
-        </header-nav-element>
-        <header-nav-element class="header__nav-element" :nav-menu="navMenu">
-          Игры
-        </header-nav-element>
-        <header-nav-element class="header__nav-element" :nav-menu="navMenu">
-          Игрушки
-        </header-nav-element>
+      </div>
+      <div class="header__nav-content" v-if="isShowNav">
+        <div
+          class="header__nav-links"
+          v-for="category in categoryArr"
+          :key="category.id"
+          v-show="category.id === openCategory"
+        >
+          <header-nav-link v-for="link in navMenu" :key="link.id">
+            <template #default>{{ link.name }}</template>
+            <template #count>{{ link.count }}</template>
+          </header-nav-link>
+        </div>
       </div>
     </div>
   </header>
@@ -56,6 +67,7 @@
 
 <script>
 import HeaderNavElement from "@/components/HeaderNavElement.vue";
+import HeaderNavLink from "@/components/HeaderNavLink.vue";
 import TopNav from "@/components/TopNav.vue";
 import InterectItem from "@/components/InterectItem.vue";
 import AppSearch from "@/components/UI/AppSearch.vue";
@@ -68,9 +80,39 @@ export default {
     TopNav,
     InterectItem,
     AppSearch,
+    HeaderNavLink,
   },
   data() {
-    return {};
+    return {
+      isShowNav: false,
+      categoryArr: [
+        {
+          id: 0,
+          title: "Книги",
+        },
+        {
+          id: 1,
+          title: "Школа",
+        },
+        {
+          id: 2,
+          title: "Канцтовары",
+        },
+        {
+          id: 3,
+          title: "Хобби",
+        },
+        {
+          id: 4,
+          title: "Игры",
+        },
+        {
+          id: 5,
+          title: "Игрушки",
+        },
+      ],
+      openCategory: null,
+    };
   },
   methods: {
     ...mapMutations({}),
@@ -78,6 +120,14 @@ export default {
       fetchLinks: "navMenu/fetchLinks",
       fetchCards: "cards/fetchCards",
     }),
+    toggleCategory(id) {
+      if (id !== this.openCategory) {
+        this.isShowNav = true;
+      } else {
+        this.isShowNav = !this.isShowNav;
+      }
+      this.openCategory = id;
+    },
   },
   computed: {
     ...mapGetters({
@@ -108,11 +158,20 @@ export default {
   padding-top: 24px;
   background-color: var(--white);
   &__wrapper {
+    position: relative;
+    @media (max-width: 320px) {
+      max-width: none;
+      width: 100%;
+    }
   }
 
   &__top {
     display: flex;
     justify-content: space-between;
+
+    @media (max-width: 320px) {
+      display: none;
+    }
   }
 
   &__location {
@@ -137,6 +196,23 @@ export default {
   &__top-nav {
   }
 
+  &__burger {
+    @media (min-width: 321px) {
+      display: none;
+    }
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    & span {
+      display: inline-block;
+      width: 22px;
+      height: 2px;
+      background-color: var(--second-color);
+    }
+  }
+
   &__phone {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
@@ -145,11 +221,17 @@ export default {
   }
 
   &__middle {
+    width: 100%;
     margin: 29px 0 20.3px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 48px;
+
+    @media (max-width: 320px) {
+      align-items: flex-start;
+      margin: 0 0 20px 0;
+    }
   }
 
   &__middle-flex {
@@ -157,10 +239,18 @@ export default {
     display: flex;
     align-items: center;
     gap: 33px;
+
+    @media (max-width: 320px) {
+      display: none;
+    }
   }
 
   &__logo {
     max-height: 48px;
+
+    @media (max-width: 320px) {
+      width: 70%;
+    }
   }
 
   &__serach-block {
@@ -174,7 +264,42 @@ export default {
   &__nav {
     position: relative;
     display: flex;
-    gap: 22px;
+    gap: 8px;
+    overflow: -moz-scrollbars-none;
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+    @media (max-width: 320px) {
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+  }
+
+  &__nav-element {
+    &:first-child {
+      @media (max-width: 320px) {
+        padding-left: var(--side-margin-wrapper);
+      }
+    }
+    &:last-child {
+      @media (max-width: 320px) {
+        padding-right: var(--side-margin-wrapper);
+      }
+    }
+  }
+  &__nav-content {
+    @media (min-width: 321px) {
+      display: none;
+    }
+    position: absolute;
+    top: 100%;
+    left: calc(var(--side-margin-wrapper) - 5px);
+
+    padding: 8px 42px 16px 16px;
+
+    border-radius: 8px;
+    background-color: rgba(241, 241, 241, 1);
   }
 }
 .wrapper {

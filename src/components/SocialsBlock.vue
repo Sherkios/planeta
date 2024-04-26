@@ -40,6 +40,9 @@ export default {
   }
 
   &__text {
+    @media (max-width: 320px) {
+      display: none;
+    }
   }
 
   &__blocks {

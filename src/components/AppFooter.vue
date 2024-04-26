@@ -86,6 +86,10 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    @media (max-width: 320px) {
+      display: none;
+    }
   }
 
   &__branding-info {
@@ -114,6 +118,9 @@ export default {
   width: 100%;
   display: flex;
   justify-content: center;
+  @media (max-width: 320px) {
+    display: none;
+  }
   &__column {
     max-width: 216px;
     width: 100%;
@@ -144,21 +151,39 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+
+  @media (max-width: 320px) {
+    width: 100%;
+    font-size: 15px;
+    line-height: 22px;
+  }
   &__phone {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 28px;
+    @media (max-width: 320px) {
+      font-size: 18px;
+    }
   }
 
   &__work-time {
-    margin: 28px 0 40px;
+    margin: 28px 0 40px 0;
+    @media (max-width: 320px) {
+      margin: 12px 0 24px 0;
+    }
   }
 
   &__confidenty {
     color: revert;
+    margin-bottom: 48px;
+    @media (max-width: 320px) {
+      margin-bottom: 24px;
+    }
   }
 
   &__developer {
     color: revert;
     display: block;
-    margin-top: 48px;
   }
 }
 </style>

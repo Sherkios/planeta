@@ -181,6 +181,10 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 12px;
+
+  @media (max-width: 320px) {
+    max-width: 136px;
+  }
   &_small {
     max-width: 136px;
 
@@ -211,6 +215,9 @@ export default {
     display: flex;
     justify-content: space-between;
     height: 264px;
+    @media (max-width: 320px) {
+      height: 172px;
+    }
   }
 
   &__tag {
@@ -275,6 +282,11 @@ export default {
     left: 50%;
     height: 240px;
     transform: translate(-50%, -50%);
+    object-fit: contain;
+
+    @media (max-width: 320px) {
+      height: 148px;
+    }
   }
 
   &__price-box {
@@ -368,6 +380,9 @@ export default {
   &__button {
     padding: 9px 32.5px;
     align-self: flex-start;
+    @media (max-width: 320px) {
+      padding: 9px 30.5px;
+    }
   }
 
   &__basket-counter {

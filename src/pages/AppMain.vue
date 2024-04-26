@@ -1,18 +1,28 @@
 <template>
   <app-header></app-header>
-  <div class="wrapper">
-    <main-banner class="main-banner"></main-banner>
-    <div class="gap">
-      <app-row link="#">
-        <template #title>Новинки книг</template>
-        <template #link>Все новинки</template>
-        <template #content>
-          <book-row :cards="cards"></book-row>
-        </template>
-      </app-row>
+  <main-banner class="main-banner"></main-banner>
+  <div class="gap">
+    <app-row link="#">
+      <template #title>Новинки книг</template>
+      <template #link>Все новинки</template>
+      <template #content>
+        <div class="wrapper">
+          <book-row
+            :cards="cards"
+            :breakpoints="{ 321: { slidesPerView: 6, spaceBetween: 24 } }"
+          ></book-row>
+        </div>
+      </template>
+    </app-row>
 
+    <div class="wrapper">
       <div class="banners">
-        <app-banner class="banners__banner" img-src="girl.png">
+        <app-banner
+          class="banners__banner"
+          img-src="girl.png"
+          mobile-img-src="girl_mobile.png"
+          :show-mobile-text="false"
+        >
           <template #default
             >Собираемся <br />
             в школу!</template
@@ -26,6 +36,7 @@
         <app-banner
           class="banners__banner"
           img-src="cans.png"
+          mobile-img-src="cans_mobile.png"
           link="#"
           :second-type="true"
         >
@@ -36,20 +47,28 @@
           >
         </app-banner>
       </div>
+    </div>
 
-      <app-row link="#">
-        <template #title>Рекомендуем</template>
-        <template #content>
-          <book-row :cards="cards"></book-row>
-        </template>
-      </app-row>
+    <app-row link="#">
+      <template #title>Рекомендуем</template>
+      <template #content>
+        <div class="wrapper">
+          <book-row
+            :cards="cards"
+            :breakpoints="{ 321: { slidesPerView: 6, spaceBetween: 24 } }"
+          ></book-row>
+        </div>
+      </template>
+    </app-row>
 
+    <div class="wrapper">
       <div class="mixin-block">
         <app-banner
           link="#"
           :second-type="true"
           background-img="colors.png"
           class="mixin-block__banner banner_dark"
+          :show-mobile-text="false"
         >
           <template #default>Товары для творчества</template>
           <template #text>
@@ -59,28 +78,37 @@
         </app-banner>
         <app-row class="mixin-block__row">
           <template #content>
-            <book-row :cards="cards" :show-count="3"></book-row>
+            <book-row
+              :cards="cards"
+              :breakpoints="{ 321: { slidesPerView: 3, spaceBetween: 24 } }"
+            ></book-row>
           </template>
         </app-row>
       </div>
+    </div>
 
-      <app-row link="#" class="last-block">
-        <template #title>Новости и акции</template>
-        <template #link>В раздел</template>
-        <template #content>
-          <div class="news-list">
-            <news-card
-              v-for="item in news"
-              :key="item.id"
-              :img-src="item.imgSrc"
-              :link="item.link"
-            >
-              <template #title>{{ item.title }}</template>
-              <template #body>{{ item.body }}</template>
-            </news-card>
-          </div>
-        </template>
-      </app-row>
+    <div class="last-block">
+      <div class="wrapper last-block__wrapper">
+        <app-row link="#">
+          <template #title>Новости и акции</template>
+          <template #link>В раздел</template>
+          <template #content>
+            <div class="wrapper last-block__wrapper">
+              <div class="news-list">
+                <news-card
+                  v-for="item in news"
+                  :key="item.id"
+                  :img-src="item.imgSrc"
+                  :link="item.link"
+                >
+                  <template #title>{{ item.title }}</template>
+                  <template #body>{{ item.body }}</template>
+                </news-card>
+              </div>
+            </div>
+          </template>
+        </app-row>
+      </div>
     </div>
   </div>
   <socials-block></socials-block>
@@ -93,7 +121,7 @@ import AppHeader from "@/components/AppHeader.vue";
 import AppFooter from "@/components/AppFooter.vue";
 import AppRow from "@/components/AppRow.vue";
 import MainBanner from "@/components/MainBanner.vue";
-import AppBanner from "@/components/UI/AppBanner.vue";
+import AppBanner from "@/components/AppBanner.vue";
 import BookRow from "@/components/BookRow.vue";
 import NewsCard from "@/components/NewsCard.vue";
 import SocialsBlock from "@/components/SocialsBlock.vue";
@@ -141,11 +169,19 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 64px;
+
+  @media (max-width: 320px) {
+    gap: 32px;
+  }
 }
 
 .banners {
   display: flex;
   gap: 24px;
+
+  @media (max-width: 320px) {
+    flex-direction: column;
+  }
   &__banner {
     flex-grow: 1;
     &:first-child {
@@ -157,16 +193,24 @@ export default {
         rgba(38, 173, 69, 1) 114px,
         rgba(38, 173, 69, 1) 228px
       );
+      @media (max-width: 320px) {
+        flex-basis: auto;
+        height: 120px;
+      }
     }
     &:last-child {
       background-color: var(--hover-color);
       flex-basis: 576px;
+      @media (max-width: 320px) {
+        flex-basis: auto;
+      }
     }
   }
 }
 .mixin-block {
   display: flex;
   gap: 24px;
+  align-items: end;
   &__banner {
     background-color: rgba(241, 241, 241, 1);
     flex-basis: 644px;
@@ -174,15 +218,31 @@ export default {
   &__row {
     width: 696px;
     flex-basis: 696px;
+    flex-grow: 1;
+    @media (max-width: 320px) {
+      display: none;
+    }
   }
 }
 
+.last-block {
+  margin-bottom: 96px;
+
+  &__wrapper {
+    @media (max-width: 320px) {
+      max-width: none;
+    }
+  }
+}
 .news-list {
   width: 100%;
   display: flex;
   gap: 24px;
-}
-.last-block {
-  margin-bottom: 96px;
+
+  @media (max-width: 320px) {
+    padding: 0 var(--side-margin-wrapper);
+    overflow-x: auto;
+    gap: 16px;
+  }
 }
 </style>

@@ -29,22 +29,35 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  @media (max-width: 320px) {
+    gap: 16px;
+    max-width: 216px;
+  }
   &__img {
     height: 220px;
     border-radius: 8px;
     overflow: hidden;
     object-fit: cover;
+
+    @media (max-width: 320px) {
+      height: 138.81px;
+    }
   }
 
   &__info {
     display: flex;
     flex-direction: column;
     gap: 12px;
+
+    @media (max-width: 320px) {
+      gap: 8px;
+    }
   }
 
   &__title {
     display: -webkit-box;
-    -webkit-line-clamp: 3; // количество строк
+    -webkit-line-clamp: 2; // количество строк
     -webkit-box-orient: vertical;
     overflow: hidden;
 

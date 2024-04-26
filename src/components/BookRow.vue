@@ -1,13 +1,14 @@
 <template>
   <div class="books">
     <swiper
-      :slides-per-view="showCount"
-      space-between="24"
+      :slides-per-view="defaultCount"
+      space-between="16"
       :modules="modules"
       :navigation="{
         prevEl: prev,
         nextEl: next,
       }"
+      :breakpoints="breakpoints"
     >
       <swiper-slide v-for="card in cards" :key="card.id">
         <book-item
@@ -61,9 +62,12 @@ export default {
       type: Object,
       required: true,
     },
-    showCount: {
+    defaultCount: {
       type: Number,
-      default: 6,
+      default: 2,
+    },
+    breakpoints: {
+      type: Object,
     },
   },
   setup() {
@@ -83,11 +87,20 @@ export default {
   position: relative;
   &__nav {
     top: 114px;
+    @media (max-width: 320px) {
+      top: 66px;
+    }
     &_next {
       transform: translate(50%, 0);
+      @media (max-width: 320px) {
+        transform: translate(10%, 0);
+      }
     }
     &_prev {
       transform: translate(-50%, 0) rotateY(180deg);
+      @media (max-width: 320px) {
+        transform: translate(-10%, 0) rotateY(180deg);
+      }
     }
   }
 }

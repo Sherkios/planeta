@@ -14,13 +14,22 @@
 
   --main-font-size: 16px;
 
+  --wrapper-width: 1416px;
+
+  --side-margin-wrapper: auto;
+
   color: var(--primary-color);
   font-size: var(--main-font-size);
   font-family: Raleway;
+
+  @media (max-width: 320px) {
+    --wrapper-width: 288px;
+  }
 }
 
 .wrapper {
-  max-width: 1416px;
+  max-width: var(--wrapper-width);
+  width: 100%;
   // padding: 0 40px;
   margin: 0 auto;
 }

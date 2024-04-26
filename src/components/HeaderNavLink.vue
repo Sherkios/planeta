@@ -37,6 +37,10 @@ export default {
 
     transition: all 0.2s ease;
 
+    @media (max-width: 320px) {
+      line-height: 32px;
+    }
+
     &:hover {
       --link-color: var(--second-color);
     }
