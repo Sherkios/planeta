@@ -2,7 +2,7 @@
   <div class="banner" :class="{ banner_second: secondType }">
     <img
       v-if="backgroundImg"
-      :src="`/img/banners/${backgroundImg}`"
+      :src="`img/banners/${backgroundImg}`"
       :alt="backgroundImg"
       class="banner__background"
     />
@@ -36,7 +36,7 @@
     <picture>
       <source
         media="(max-width: 320px)"
-        :srcset="`/img/banners/${mobileImgSrc}`"
+        :srcset="`img/banners/${mobileImgSrc}`"
         v-if="mobileImgSrc"
       />
       <img
