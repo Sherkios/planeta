@@ -2,6 +2,7 @@
   <div class="banner" :class="{ banner_second: secondType }">
     <picture class="banner__bg-picture">
       <source
+        v-if="mobileBgImgSrc"
         media="(max-width: 320px)"
         :srcset="`img/banners/${mobileBgImgSrc}`"
       />
