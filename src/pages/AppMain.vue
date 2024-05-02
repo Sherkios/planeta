@@ -1,4 +1,47 @@
 <template>
+  <div class="sales" v-show="showSales">
+    <div class="sales__info">
+      <svg
+        class="sales__svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M2.81877 19.3165L2 9H22L21.1812 19.3165C21.0162 21.3963 19.2802 23 17.1938 23H6.80623C4.71982 23 2.98384 21.3963 2.81877 19.3165Z"
+          stroke="white"
+          stroke-width="2"
+        />
+        <path
+          d="M7 9V4C7 2.89543 7.89543 2 9 2H15C16.1046 2 17 2.89543 17 4V9"
+          stroke="white"
+          stroke-width="2"
+        />
+      </svg>
+
+      <div class="sales__text">
+        Совместные покупки для садиков, школ и университетов со скидкой до 10%
+      </div>
+    </div>
+    <div class="sales__close" @click="hideSales">
+      <svg
+        width="14"
+        height="14"
+        viewBox="0 0 14 14"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M12.6672 1L1.35353 12.3137" stroke="white" stroke-width="2" />
+        <path
+          d="M12.3137 12.3137L1.00001 1.00001"
+          stroke="white"
+          stroke-width="2"
+        />
+      </svg>
+    </div>
+  </div>
   <app-header></app-header>
   <main-banner class="main-banner"></main-banner>
   <div class="gap">
@@ -144,6 +187,11 @@ export default {
     NewsCard,
     SocialsBlock,
   },
+  data() {
+    return {
+      showSales: true,
+    };
+  },
 
   methods: {
     ...mapMutations({}),
@@ -151,6 +199,9 @@ export default {
       fetchCards: "cards/fetchCards",
       fetchNews: "news/fetchNews",
     }),
+    hideSales() {
+      this.showSales = false;
+    },
   },
   computed: {
     ...mapGetters({
@@ -167,6 +218,46 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.sales {
+  position: relative;
+  padding: 20px;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  &__info {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  &__svg {
+  }
+
+  &__text {
+    color: var(--white);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  &__close {
+    --w: 24px;
+    width: var(--w);
+    height: var(--w);
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translate(0, -50%);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+  }
+}
+
 .main-banner {
   margin-top: 31.72px;
   margin-bottom: 56px;
