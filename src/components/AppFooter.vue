@@ -115,8 +115,9 @@ export default {
 }
 .footer-nav {
   margin-left: 104px;
-  width: 100%;
+  flex-grow: 1;
   display: flex;
+  gap: 24px;
   justify-content: center;
   @media (max-width: 320px) {
     display: none;
@@ -143,7 +144,7 @@ export default {
   }
 }
 .footer-info {
-  font-family: Arial, Helvetica, sans-serif;
+  // font-family: Arial, Helvetica, sans-serif;
   width: 320px;
   flex-shrink: 0;
   text-align: right;

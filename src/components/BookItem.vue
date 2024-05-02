@@ -39,7 +39,10 @@
           />
         </g>
       </svg>
-      <img :src="`img/books/${imgSrc}`" class="book-item__img" />
+      <picture class="book-item__picture">
+        <source media="(max-width: 320px)" :srcset="`img/books/${mobileSrc}`" />
+        <img :src="`img/books/${imgSrc}`" class="book-item__img" />
+      </picture>
     </div>
     <div class="book-item__price-box">
       <div class="book-item__price" v-if="$slots.price">
@@ -124,6 +127,10 @@ export default {
   name: "book-item",
   props: {
     imgSrc: {
+      type: String,
+      required: true,
+    },
+    mobileSrc: {
       type: String,
       required: true,
     },
@@ -275,6 +282,15 @@ export default {
     line-height: 16.44px;
   }
 
+  &__picture {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
   &__img {
     position: absolute;
     z-index: 0;
@@ -323,14 +339,17 @@ export default {
   }
 
   &__info {
+    min-height: 76px;
     display: flex;
     flex-direction: column;
     gap: 8px;
+
+    @media (max-width: 320px) {
+      min-height: 100px;
+    }
   }
 
   &__name {
-    height: 48px;
-
     display: -webkit-box;
     -webkit-line-clamp: 2; // количество строк
     -webkit-box-orient: vertical;
@@ -341,6 +360,10 @@ export default {
     font-size: 16px;
     font-weight: 500;
     line-height: 1.5em;
+
+    @media (max-width: 320px) {
+      -webkit-line-clamp: 3; // количество строк
+    }
   }
 
   &__reviews {

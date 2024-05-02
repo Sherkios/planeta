@@ -11,6 +11,7 @@ const cards = [
     recommended: true,
     new: false,
     imgSrc: "gp.png",
+    mobileSrc: "ms_mobile.png",
   },
   {
     name: "Безмолвный пациент Михаэлидес А.",
@@ -24,6 +25,7 @@ const cards = [
     recommended: true,
     new: false,
     imgSrc: "gp.png",
+    mobileSrc: "ms_mobile.png",
   },
   {
     name: "Просто делай! Делай просто! Хартманн Оскар",
@@ -37,6 +39,7 @@ const cards = [
     recommended: true,
     new: false,
     imgSrc: "gp.png",
+    mobileSrc: "ms_mobile.png",
   },
   {
     name: "Безмолвный пациент Михаэлидес А.",
@@ -50,6 +53,7 @@ const cards = [
     recommended: true,
     new: true,
     imgSrc: "gp.png",
+    mobileSrc: "ms_mobile.png",
   },
   {
     name: "Институт Кинг С.",
@@ -63,6 +67,7 @@ const cards = [
     recommended: true,
     new: true,
     imgSrc: "gp.png",
+    mobileSrc: "ms_mobile.png",
   },
   {
     name: "НЕ ТУПИ. Только тот, кто ежедневно работает над ...",
@@ -76,6 +81,7 @@ const cards = [
     recommended: true,
     new: true,
     imgSrc: "gp.png",
+    mobileSrc: "ms_mobile.png",
   },
   {
     name: "Гарри Поттер и Дары Смерти",
@@ -89,6 +95,7 @@ const cards = [
     recommended: true,
     new: true,
     imgSrc: "gp.png",
+    mobileSrc: "ms_mobile.png",
   },
   {
     name: "Безмолвный пациент Михаэлидес А.",
@@ -102,6 +109,7 @@ const cards = [
     recommended: true,
     new: true,
     imgSrc: "gp.png",
+    mobileSrc: "ms_mobile.png",
   },
   {
     name: "Просто делай! Делай просто! Хартманн Оскар",
@@ -115,6 +123,7 @@ const cards = [
     recommended: true,
     new: true,
     imgSrc: "gp.png",
+    mobileSrc: "ms_mobile.png",
   },
   {
     name: "Безмолвный пациент Михаэлидес А.",
@@ -128,6 +137,7 @@ const cards = [
     recommended: true,
     new: false,
     imgSrc: "gp.png",
+    mobileSrc: "ms_mobile.png",
   },
   {
     name: "Институт Кинг С.",
@@ -141,6 +151,7 @@ const cards = [
     recommended: true,
     new: true,
     imgSrc: "gp.png",
+    mobileSrc: "ms_mobile.png",
   },
   {
     name: "НЕ ТУПИ. Только тот, кто ежедневно работает над ...",
@@ -154,6 +165,7 @@ const cards = [
     recommended: true,
     new: true,
     imgSrc: "gp.png",
+    mobileSrc: "ms_mobile.png",
   },
 ];
 export default cards;

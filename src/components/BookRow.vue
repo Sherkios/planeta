@@ -13,6 +13,7 @@
       <swiper-slide v-for="card in cards" :key="card.id">
         <book-item
           :imgSrc="card.imgSrc"
+          :mobile-src="card.mobileSrc"
           :raiting="card.raiting"
           :reviews="card.reviews"
           :show-like="true"

@@ -34,7 +34,7 @@
         </app-banner>
 
         <app-banner
-          class="banners__banner"
+          class="banners__banner banner_title32"
           img-src="cans.png"
           mobile-img-src="cans_mobile.png"
           link="#"
@@ -67,10 +67,14 @@
           link="#"
           :second-type="true"
           background-img="colors.png"
-          class="mixin-block__banner banner_dark"
+          class="mixin-block__banner banner_dark banner_title32"
+          mobile-bg-img-src="colors_mobile.png"
           :show-mobile-text="false"
         >
-          <template #default>Товары для творчества</template>
+          <template #default
+            >Товары <br class="mobile-show" />
+            для творчества</template
+          >
           <template #text>
             Принадлежности для рисования, <br />
             тетради и многое другое.</template
@@ -99,6 +103,7 @@
                   v-for="item in news"
                   :key="item.id"
                   :img-src="item.imgSrc"
+                  :mobile-src="item.mobileSrc"
                   :link="item.link"
                 >
                   <template #title>{{ item.title }}</template>
@@ -163,7 +168,13 @@ export default {
 
 <style lang="scss" scoped>
 .main-banner {
+  margin-top: 31.72px;
   margin-bottom: 56px;
+
+  @media (max-width: 320px) {
+    margin-top: 8px;
+    margin-bottom: 32px;
+  }
 }
 .gap {
   display: flex;
@@ -209,7 +220,7 @@ export default {
 }
 .mixin-block {
   display: flex;
-  gap: 24px;
+  gap: 56px;
   align-items: end;
   &__banner {
     background-color: rgba(241, 241, 241, 1);
@@ -243,6 +254,11 @@ export default {
     padding: 0 var(--side-margin-wrapper);
     overflow-x: auto;
     gap: 16px;
+  }
+}
+.mobile-show {
+  @media (min-width: 321px) {
+    display: none;
   }
 }
 </style>

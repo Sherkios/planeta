@@ -20,26 +20,28 @@ export default {
 .serach {
   display: flex;
   align-items: center;
-  border: 2px solid var(--ui-color);
-  border-radius: 6px;
-  max-height: 48px;
+
   width: 100%;
-  overflow: hidden;
   &__input {
-    border: none;
     width: 100%;
+    max-height: 48px;
     height: 100%;
 
     padding: 12px 16px;
-
+    border: 2px solid var(--ui-color);
+    border-radius: 6px 0 0 6px;
+    font-size: 16px;
     line-height: 1.5em;
     font-weight: 500;
+    outline: none;
   }
 
   &__button {
+    height: 48px;
     flex-shrink: 0;
     padding: 10px 16px;
     background-color: var(--ui-color);
+    border-radius: 0 6px 6px 0;
   }
 
   &__img {

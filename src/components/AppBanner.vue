@@ -1,11 +1,18 @@
 <template>
   <div class="banner" :class="{ banner_second: secondType }">
-    <img
-      v-if="backgroundImg"
-      :src="`img/banners/${backgroundImg}`"
-      :alt="backgroundImg"
-      class="banner__background"
-    />
+    <picture class="banner__bg-picture">
+      <source
+        media="(max-width: 320px)"
+        :srcset="`img/banners/${mobileBgImgSrc}`"
+      />
+      <img
+        v-if="backgroundImg"
+        :src="`img/banners/${backgroundImg}`"
+        :alt="backgroundImg"
+        class="banner__background"
+      />
+    </picture>
+
     <div class="banner__info">
       <div class="banner__title">
         <slot></slot>
@@ -33,7 +40,7 @@
         />
       </svg>
     </a>
-    <picture>
+    <picture class="banner__picture">
       <source
         media="(max-width: 320px)"
         :srcset="`img/banners/${mobileImgSrc}`"
@@ -60,6 +67,9 @@ export default {
       type: String,
     },
     mobileImgSrc: {
+      type: String,
+    },
+    mobileBgImgSrc: {
       type: String,
     },
     link: {
@@ -108,6 +118,22 @@ export default {
     justify-content: space-between;
     flex-direction: column;
   }
+  &_title32 {
+    & .banner__title {
+      font-size: 32px;
+
+      @media (max-width: 320px) {
+        font-size: 20px;
+      }
+    }
+  }
+  &__bg-picture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
   &__background {
     position: absolute;
     top: 0;
@@ -132,7 +158,7 @@ export default {
     line-height: 46px;
 
     @media (max-width: 320px) {
-      font-size: 20px;
+      font-size: 23px;
       line-height: 28px;
     }
   }
@@ -143,12 +169,20 @@ export default {
     line-height: 24px;
 
     &_mobile {
-      display: none;
+      @media (max-width: 320px) {
+        display: none;
+      }
     }
     @media (max-width: 320px) {
       font-size: 15px;
       line-height: 22px;
     }
+  }
+
+  &__picture {
+    position: absolute;
+    bottom: 0;
+    right: 0;
   }
 
   &__img {

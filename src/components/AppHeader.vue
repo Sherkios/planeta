@@ -18,7 +18,9 @@
     </div>
     <div class="wrapper">
       <div class="header__middle">
-        <img src="@/assets/img/logo.png" alt class="header__logo" />
+        <a href="#">
+          <img src="@/assets/img/logo.png" alt class="header__logo" />
+        </a>
         <div class="header__middle-flex">
           <app-search class="header__serach-block"></app-search>
           <div class="header__interects">
@@ -214,7 +216,7 @@ export default {
   }
 
   &__phone {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Raleway;
     font-size: 20px;
     font-weight: 700;
     line-height: 1.4em;
@@ -249,7 +251,7 @@ export default {
     max-height: 48px;
 
     @media (max-width: 320px) {
-      width: 70%;
+      width: 100%;
     }
   }
 
@@ -292,6 +294,8 @@ export default {
     @media (min-width: 321px) {
       display: none;
     }
+    height: 50vh;
+    overflow-y: auto;
     position: absolute;
     top: 100%;
     left: calc(var(--side-margin-wrapper) - 5px);

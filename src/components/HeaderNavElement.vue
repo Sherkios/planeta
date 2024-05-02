@@ -4,28 +4,31 @@
       <div class="header-nav-element__category-name" @click="toggleCategory">
         <slot></slot>
       </div>
-      <div class="header-nav-element__content">
-        <div class="header-nav-element__links">
-          <header-nav-link v-for="link in navMenu" :key="link.id">
-            <template #default>{{ link.name }}</template>
-            <template #count>{{ link.count }}</template>
-          </header-nav-link>
-        </div>
-        <div class="header-nav-element__bestseller" v-if="limitBestseller">
-          <div class="header-nav-element__bestseller-name">Бестселлеры</div>
-          <div class="header-nav-element__bestseller-group">
-            <book-item
-              v-for="card of limitBestseller"
-              :key="card.id"
-              :imgSrc="card.imgSrc"
-              :raiting="card.raiting"
-              :reviews="card.reviews"
-              :small="true"
-              ><template #price>{{ card.price }}</template>
-              <template #oldPrice>{{ card.oldPrice }}</template>
-              <template #name>{{ card.name }}</template>
-              <template #discount>{{ card.discount }}</template></book-item
-            >
+      <div class="header-nav-element__wrapper">
+        <div class="header-nav-element__content">
+          <div class="header-nav-element__links">
+            <header-nav-link v-for="link in navMenu" :key="link.id">
+              <template #default>{{ link.name }}</template>
+              <template #count>{{ link.count }}</template>
+            </header-nav-link>
+          </div>
+          <div class="header-nav-element__bestseller" v-if="limitBestseller">
+            <div class="header-nav-element__bestseller-name">Бестселлеры</div>
+            <div class="header-nav-element__bestseller-group">
+              <book-item
+                v-for="card of limitBestseller"
+                :key="card.id"
+                :imgSrc="card.imgSrc"
+                :mobile-src="card.mobileSrc"
+                :raiting="card.raiting"
+                :reviews="card.reviews"
+                :small="true"
+                ><template #price>{{ card.price }}</template>
+                <template #oldPrice>{{ card.oldPrice }}</template>
+                <template #name>{{ card.name }}</template>
+                <template #discount>{{ card.discount }}</template></book-item
+              >
+            </div>
           </div>
         </div>
       </div>
@@ -87,12 +90,14 @@ export default {
     @media (max-width: 320px) {
       font-size: 18px;
       line-height: 28px;
+
+      &:hover {
+        --category-color: var(--hover-color);
+        --hover-background: rgba(241, 241, 241, 1);
+      }
     }
 
     &:hover {
-      --category-color: var(--hover-color);
-      --hover-background: rgba(241, 241, 241, 1);
-
       & .header-nav-element__content {
         visibility: visible;
         opacity: 1;
@@ -104,10 +109,16 @@ export default {
     padding: 6px 8px;
     border-radius: 6px 6px 0 0;
     background-color: var(--hover-background);
-    transition: all 0.5s ease;
+    transition: all 0.2s ease;
   }
   &__content-wrapper {
     padding-top: 15.72px;
+  }
+  &__wrapper {
+    padding-top: 7.72px;
+    @media (max-width: 320px) {
+      padding-top: 0;
+    }
   }
   &__content {
     position: absolute;
@@ -120,14 +131,14 @@ export default {
 
     display: flex;
     gap: 64px;
-
+    border: 1px solid rgba(227, 227, 227, 1);
     background-color: var(--hover-background);
     border-radius: 12px;
 
     visibility: hidden;
     opacity: 0;
 
-    transition: all 0.5s ease;
+    transition: all 0.2s ease;
 
     @media (max-width: 320px) {
       max-width: 297px;
