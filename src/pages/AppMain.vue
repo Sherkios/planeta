@@ -225,6 +225,10 @@ export default {
   display: flex;
   justify-content: center;
   text-align: center;
+
+  @media (max-width: 320px) {
+    display: none;
+  }
   &__info {
     display: flex;
     gap: 16px;
