@@ -47,7 +47,7 @@
         v-if="mobileImgSrc"
       />
       <img
-        :src="`/img/banners/${imgSrc}`"
+        :src="`img/banners/${imgSrc}`"
         :alt="imgSrc"
         class="banner__img"
         v-if="imgSrc"
